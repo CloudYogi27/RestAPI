@@ -29,9 +29,27 @@ docker-compose run --rm app sh -c "django-admin startproject app . "
 # Run docker to start services
 docker-compose up
 
+docker-compose run --rm app sh -c "python manage.py test"
 
 
 
+
+
+
+
+
+===============
+LocalRestAPI
+
+python3 -m venv py
+py/bin/pip install --upgrade pip
+ py/bin/pip install -r requirements.txt
+ py/bin/pip install -r requirements.dev.txt
+ export PATH=$PATH:/Users/Yogesh/Documents/LocalRestAPI/py/bin
+ ./activate
+python manage.py runserver 0.0.0.0:8000
+
+=========
 
 
 
