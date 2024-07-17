@@ -30,15 +30,27 @@ docker-compose run --rm app sh -c "python manage.py my_wait_for_db && flake8"
 # Start new project
 docker-compose run --rm app sh -c "django-admin startproject app . "
 docker-compose run --rm app sh -c "python manage.py startapp core"
+docker-compose run --rm app sh -c "python manage.py startapp user"
+
 
 # Run docker to start services
 docker-compose up
 docker-compose down
 
+# Create Super user
+docker-compose run --rm app sh -c "python manage.py createsuperuser"
 
+===========
+Migration
+---  Cleanup old db
+docker-compose down
+docker volume ls
+docker volume rm restapi_dev-deb-data
+docker volume ls
+---
 
-
-
+docker-compose run --rm app sh -c "python manage.py makemigrations"
+docker-compose run --rm app sh -c "python manage.py my_wait_for_db && python manage.py migrate"
 
 
 ===============
@@ -54,6 +66,8 @@ python manage.py runserver 0.0.0.0:8000
 
 =========
 git clone https://github.com/CloudYogi27/RestAPI.git .
+
+git add .
 git commit -am "code update."
 git push origin
 
