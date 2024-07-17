@@ -33,9 +33,7 @@ docker-compose run --rm app sh -c "python manage.py startapp core"
 
 # Run docker to start services
 docker-compose up
-
-
-
+docker-compose down
 
 
 
@@ -56,7 +54,7 @@ python manage.py runserver 0.0.0.0:8000
 
 =========
 git clone https://github.com/CloudYogi27/RestAPI.git .
-git commit -am "Added Github actions."
+git commit -am "code update."
 git push origin
 
 
