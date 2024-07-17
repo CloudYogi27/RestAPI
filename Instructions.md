@@ -22,14 +22,19 @@ docker build .
 docker-compose build
 
 docker-compose run --rm app sh -c "flake8"
+docker-compose run --rm app sh -c "python manage.py test"
+docker-compose run --rm app sh -c "python manage.py my_wait_for_db && flake8"
+
+
 
 # Start new project
 docker-compose run --rm app sh -c "django-admin startproject app . "
+docker-compose run --rm app sh -c "python manage.py startapp core"
 
 # Run docker to start services
 docker-compose up
 
-docker-compose run --rm app sh -c "python manage.py test"
+
 
 
 
@@ -50,8 +55,9 @@ py/bin/pip install --upgrade pip
 python manage.py runserver 0.0.0.0:8000
 
 =========
-
-
+git clone https://github.com/CloudYogi27/RestAPI.git .
+git commit -am "Added Github actions."
+git push origin
 
 
 
