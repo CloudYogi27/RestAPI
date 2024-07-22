@@ -59,3 +59,108 @@ class CommandTests(TestCase):
             gi.side_effect = [OperationalError] * 5 + [True]
             call_command('wait_for_db')
             self.assertEqual(gi.call_count, 6)
+
+
+
+
+==================================
+brew install postgresql
+/usr/local/bin/pg_config
+
+python3 -m venv virt
+. virt/bin/activate
+virt/bin/pip install --upgrade pip
+virt/bin/pip install -r requirement_local.txt
+
+python manage.py my_wait_for_db  python manage.py migrate  python manage.py runserver 0.0.0.0:8000
+
+
+django-admin startproject app
+python manage.py startapp core
+python manage.py startapp user
+
+python3 manage.py migrate
+sudo  python3 manage.py createsuperuser user=admin,Email address: CloudYogi27@gmail.com, pwd=YogAsh123
+
+python3 manage.py runserver
+python3 manage.py test
+
+
+==========
+
+#New Project Setup - Start
+1. Create new project directory:  DCRM
+$ cd DCRM
+$ git config --global user.name "CloudYogi27"
+$ git config --global user.email "CloudYogi27@gmail.com"
+$ git clone --depth 1 --no-single-branch -v https://github.com/CloudYogi27/FutureREI.git --branch ReleaseJun2023 .
+$ git clone --depth 1 --no-single-branch -v https://github.com/CloudYogi27/FutureREI.git --branch ReleaseJul2023 .
+
+git clone  --depth 1 --no-single-branch   -v https://github.com/CloudYogi27/FortuneREI.git --branch ReleaseJul2023 .
+
+$ python3 -m venv virt
+$ . virt/bin/activate
+$ sudo python3 -m pip install django
+$ django-admin startproject prjFutureCRM
+$ cd prjFutureCRM
+$ python3 manage.py startapp webFutureCRM
+
+Update prjCTM
+1. Modify settings.py ==> Add new wbsite webCRM and update DB engine
+2. Modify urls.py to add inlcude to import and add webFutureCRM as follows:
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('',include('webDataCollection.urls')),
+    ]
+
+
+Under webFutureCRM
+1.  Create templates folder
+2.  Create urls.py
+    from django.urls import path
+    from . import views
+
+    urlpatterns = [
+        path('', views.home,name='home'),
+        #path('add_lead', views.add_lead, name='add_lead'),
+    ]
+
+
+$ python3 manage.py migrate
+$ sudo  python3 manage.py createsuperuser user=admin,Email address: CloudYogi27@gmail.com, pwd=YogAsh123
+
+git add .
+git commit -m "Code update"
+git push -v origin --all
+
+python3 manage.py runserver
+
+#New Project Setup - Complete
+
+----
+git add .
+git commit -m "Added Lead Parsing and HTML Pages"
+git push -v origin --all
+
+
+
+********** Run Below command after any DDL command changes **********
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py runserver
+Register new tables in admin.py
+*************** Verify in sqllite in the terminal ********************
+>cd ~/prjCRM
+>sqlite3 FutureDB.sqlite
+sqlite> .schema  --> Print all tables
+sqlite> select * form webCRM_record;
+**********************************************************************
+
+
+
+
+sudo python3 -m pip install pytz
+
